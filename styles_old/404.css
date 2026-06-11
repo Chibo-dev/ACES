@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    color: #333;
+    background-color: #1C1C1C;
+}
+
+/* ===== Error hero (mirrors .projects-banner pattern) ===== */
+.error-section {
+    position: relative;
+    width: 100%;
+    min-height: calc(100vh - 110px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 150px 20px 80px;
+    background-color: #1C1C1C;
+    overflow: hidden;
+}
+
+.error-section .error-code {
+    font-size: 11rem;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 4px;
+    color: #FDCB11;
+}
+
+.error-section h1 {
+    font-size: 2.5rem;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 24px 0;
+}
+
+.error-section h1 .highlight-1 {
+    background-color: #ffcc00;
+    color: #ffffff;
+    padding: 5px 10px;
+}
+
+.error-section p {
+    max-width: 560px;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #cccccc;
+    margin: 0 auto 36px;
+}
+
+/* ===== Button (mirrors .contact-button) ===== */
+.home-button {
+    background-color: #FDCB11;
+    color: #FFFFFF;
+    padding: 12px 32px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 2px solid #FDCB11;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    display: inline-block;
+}
+
+.home-button:hover {
+    background-color: rgba(253, 203, 17, 0.15);
+    color: #FDCB11;
+}
+
+/* ===== Secondary quick links ===== */
+.error-links {
+    margin-top: 44px;
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.error-links a {
+    position: relative;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.error-links a::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -8px;
+    width: 0;
+    height: 3px;
+    background-color: #FDCB11;
+    transition: width 0.4s ease, left 0.4s ease;
+}
+
+.error-links a:hover {
+    color: #FDCB11;
+}
+
+.error-links a:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+@media (max-width: 1024px) {
+    .error-section .error-code {
+        font-size: 9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .error-section .error-code {
+        font-size: 7rem;
+    }
+
+    .error-section h1 {
+        font-size: 2rem;
+        letter-spacing: 1.5px;
+    }
+
+    .error-section p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .error-section {
+        min-height: calc(100vh - 60px);
+        padding: 100px 20px 60px;
+    }
+
+    .error-section .error-code {
+        font-size: 5rem;
+    }
+
+    .error-section h1 {
+        font-size: 1.5rem;
+        letter-spacing: 1px;
+    }
+
+    .error-links {
+        gap: 20px;
+    }
+}

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROJECTS GALLERY</title>
+    <link rel="icon" type="image/png" href="assets/Aces-favicon.png">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="page-projects">
+    <header id="main-header">
+        <div class="logo">
+            <img id="logo-img" src="assets/Aces-black-logo.png" alt="ACES Logo">
+        </div>
+        <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+        <nav>
+            <ul id="nav-menu">
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="about.html">ABOUT US</a></li>
+                <li><a href="commercial.html">COMMERCIAL</a></li>
+                <li><a href="residential.html">RESIDENTIAL</a></li>
+                <li><a href="projects.html" class="active">PROJECTS GALLERY</a></li>
+                <li><a href="careers.html">CAREERS</a></li>
+                <li class="contact-menu-item"><a href="contact.html">CONTACT US</a></li>
+            </ul>
+        </nav>
+        <div class="contact-button-wrapper">
+            <a href="contact.html" class="contact-button">CONTACT US</a>
+        </div>
+    </header>
+
+    <section class="projects-banner">
+    </section>
+
+    <div class="grid-container grid-3-columns">
+        <a href="projects/SHOTO.html" class="project animated-content-right">
+            <img src="assets/projects-akedo.png" alt="Project 1">
+            <div class="project-overlay">SHOTO - DC<br><span>View Project ></span></div>
+        </a>
+        <a href="projects/AutoZone.html" class="project animated-content-right">
+            <img src="assets/projects-autozone.png" alt="Project 2">
+            <div class="project-overlay">AutoZone - VA<br><span>View Project ></span></div>
+        </a>
+        <a href="projects/Chase-bank.html" class="project animated-content-right">
+            <img src="assets/projects-chase-bank.png" alt="Project 3">
+            <div class="project-overlay">Chase Bank - VA<br><span>View Project ></span></div>
+        </a>
+        <a href="projects/CVS.html" class="project animated-content-right">
+            <img src="assets/projects-cvs.png" alt="Project 4">
+            <div class="project-overlay">CVS - MD<br><span>View Project ></span></div>
+        </a>
+        <a href="projects/Heartland-Dental.html" class="project animated-content-right">
+            <img src="assets/projects-heartland-dental.png" alt="Project 5">
+            <div class="project-overlay">Heartland Dental - VA<br><span>View Project ></span></div>
+        </a>
+        <a href="projects/Raising-Canes.html" class="project animated-content-right">
+            <img src="assets/Projects-raising-canes.png" alt="Project 6">
+            <div class="project-overlay">Raising Canes - VA<br><span>View Project ></span></div>
+        </a>
+        <a href="projects/Sunglass-Hut.html" class="project animated-content-right">
+            <img src="assets/projects-sunglass-hut.png" alt="Project 7">
+            <div class="project-overlay">Sunglass Hut - VA<br><span>View Project ></span></div>
+        </a>
+        <a href="projects/Urban-Air.html" class="project animated-content-right">
+            <img src="assets/projects-urban-air.png" alt="Project 8">
+            <div class="project-overlay">Urban Air - MD<br><span>View Project ></span></div>
+        </a>
+        <a href="projects/Flagship-Carwash.html" class="project animated-content-right">
+            <img src="assets-projects/Flagship Car Wash 2 .png" alt="Project 9">
+            <div class="project-overlay">Flagship Carwash<br><span>View Project ></span></div>
+        </a>
+    </div>
+
+    <div id="map"></div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="assets/Aces-white-logo.png" alt="ACES Logo">
+            </div>
+            <div class="footer-links">
+
+                <div class="services">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="commercial.html">Commercial</a></li>
+                        <li><a href="residential.html">Residential</a></li>
+                        <li><a href="projects.html" class="active">Projects Gallery</a></li>
+                    </ul>
+                </div>
+                <div class="contact">
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="privacyPolicy.html">Privacy Policy</a></li>
+                        <li><a href="termsOfUse.html">Terms Of Use</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-certifications">
+            <h4>Certifications</h4>
+            <div class="certifications-list">
+                <img src="assets/swam-certification.png" alt="SWaM Certified - Small, Women and Minority-Owned Business by the Virginia Department of Small Business & Supplier Diversity">
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>License Number - VA - 2705157084 / MD - 12758 / DC - EM40000126</p>
+            <p>COPYRIGHT © 2025 • ACES ELECTRICAL SERVICES LLC</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+    <script src="locations.js"></script>
+    <script>
+        var map = L.map('map').setView([38.9, -77.1], 10);
+
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+        }).addTo(map);
+
+        var customIcon = L.icon({
+            iconUrl: 'assets/map-marker.png',
+            iconSize: [32, 32],
+            iconAnchor: [16, 32],
+            popupAnchor: [0, -32],
+        });
+
+                // locations vem de locations.js
+
+        var markers = L.markerClusterGroup({
+            maxClusterRadius: 50,
+            spiderfyOnMaxZoom: true,
+            showCoverageOnHover: false
+        });
+
+        locations.forEach(function (location) {
+            const popupContent = `<b>${location.title}</b>` +
+                `<br>GC: ${location.gc}` +
+                `<br>Year: ${location.year}` +
+                (location.link ? `<br><a href="${location.link}">More Info</a>` : '');
+
+            L.marker(location.coords, { icon: customIcon })
+                .bindPopup(popupContent)
+                .addTo(markers);
+        });
+
+        map.addLayer(markers);
+    </script>
+    
+    <script src="animation.js"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>

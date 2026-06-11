@@ -1,0 +1,45 @@
+/* ===== Certifications Section ===== */
+.footer-certifications {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    text-align: center;
+}
+
+.footer-certifications h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #FDCB11;
+    margin-bottom: 20px;
+}
+
+.certifications-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.certifications-list img {
+    max-width: 280px;
+    height: auto;
+    background-color: #fff;
+    padding: 8px;
+    border-radius: 4px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.certifications-list img:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(253, 203, 17, 0.25);
+}
+
+@media (max-width: 850px) {
+    .certifications-list img {
+        max-width: 220px;
+    }
+}

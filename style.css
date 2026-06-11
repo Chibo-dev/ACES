@@ -1,0 +1,3153 @@
+/* ==========================================================================
+   ACES ELECTRICAL SERVICES — style.css (arquivo único)
+   --------------------------------------------------------------------------
+   Estrutura:
+     1. Fontes
+     2. Reset e base
+     3. Fundo / tipografia por página (classe no <body>)
+     4. Header (global)
+     5. Animações (global)
+     6. Destaques (.highlight / .highlight-1)
+     7. Banners internos (.projects-banner)
+     8. Seções por página (escopadas por .page-*)
+     9. Grade de projetos (compartilhada: commercial + projects)
+    10. Footer, certificações e estados (global — manter por último)
+   --------------------------------------------------------------------------
+   Cada página declara sua classe no body:
+     index.html ............ <body class="page-home">
+     about.html ............ <body class="page-about">
+     commercial.html ....... <body class="page-commercial">
+     residential.html ...... <body class="page-residential">
+     services.html ......... <body class="page-services">
+     projects.html ......... <body class="page-projects">
+     careers.html .......... <body class="page-careers">
+     contact.html .......... <body class="page-contact">
+     privacyPolicy.html .... <body class="page-privacy">
+     termsOfUse.html ....... <body class="page-terms">
+     404.html .............. <body class="page-404">
+     projects/*.html ....... <body class="page-project">  (detalhe de projeto)
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. FONTES
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Advent+Pro:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+/* ==========================================================================
+   2. RESET E BASE
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    color: #333;
+}
+
+
+/* ==========================================================================
+   3. FUNDO / TIPOGRAFIA POR PÁGINA
+   ========================================================================== */
+.page-about,
+.page-commercial,
+.page-projects {
+    background-color: #f9f9f9;
+}
+
+.page-residential {
+    background-color: #f9f9f9;
+    line-height: 1.6;
+}
+
+.page-services {
+    font-family: "Advent Pro", system-ui;
+    background-color: #f9f9f9;
+    line-height: 1.6;
+}
+
+.page-careers {
+    background-color: #f9f9f9;
+    hyphens: auto;
+}
+
+.page-contact {
+    background-color: #111;
+    color: #000; /* o CSS original não definia cor no body desta página */
+}
+
+.page-privacy,
+.page-terms {
+    background-color: #ffffff;
+}
+
+.page-404 {
+    background-color: #1C1C1C;
+}
+
+.page-home {
+    color: #000; /* o CSS original não definia cor no body desta página */
+}
+
+.page-project {
+    background-color: #f9f9f9;
+    color: #000; /* o CSS original não definia cor no body desta página */
+}
+
+/* Parágrafos justificados (páginas que usavam essa regra global) */
+.page-home p,
+.page-about p,
+.page-commercial p,
+.page-residential p {
+    text-align: justify;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+}
+
+
+/* ==========================================================================
+   4. HEADER (GLOBAL)
+   ========================================================================== */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    line-height: 1;
+    width: 100%;
+    height: 110px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 200px;
+    box-shadow: none;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    z-index: 1000;
+    color: #000000;
+}
+
+.logo img {
+    width: 240px;
+    transition: opacity 0.3s ease;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 32px;
+}
+
+nav ul li {
+    position: relative;
+}
+
+nav ul li a {
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    color: #000000;
+}
+
+nav ul li a:hover {
+    color: #FDCB11;
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -10px;
+    width: 0;
+    height: 3px;
+    background-color: #FDCB11;
+    transition: width 0.4s ease, left 0.4s ease;
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+nav ul li a.active::after {
+    width: 100%;
+    left: 0;
+}
+
+/* Dropdown (usado pelo header legado de services.html) */
+.dropdown-content {
+    display: block;
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    background-color: white;
+    min-width: 150px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    transform: translateY(-10px) translateX(0%);
+    transition: opacity 0.8s ease, transform 0.3s ease, visibility 0.3s;
+    left: -50%;
+    top: 125%;
+}
+
+.dropdown-content li {
+    padding: 12px 16px;
+    text-align: left;
+}
+
+.dropdown-content li a {
+    color: #333;
+    display: block;
+}
+
+.dropdown-content li a:hover {
+    color: #ff9900;
+}
+
+.dropdown:hover .dropdown-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.contact-info a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #000000;
+    width: 135px;
+}
+
+.contact-info a:hover {
+    color: #FDCB11;
+    transition: color 0.3s ease;
+}
+
+.menu-toggle {
+    display: none;
+}
+
+.mobile-only {
+    display: none;
+}
+
+.contact-button {
+    background-color: #FDCB11;
+    color: #FFFFFF;
+    padding: 9px 18px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease, border 0.3s ease;
+    display: inline-block;
+    border: 2px solid #FDCB11;
+}
+
+.contact-button:hover {
+    background-color: rgba(253, 203, 17, 0.4);
+    color: #FFFFFF;
+}
+
+@media (max-width: 1540px) {
+    header {
+        padding: 0 20px;
+    }
+}
+
+@media (max-width: 1230px) {
+    .menu-toggle {
+        display: block;
+        cursor: pointer;
+        font-size: 1.5rem;
+        margin-left: auto;
+        margin-right: 20px;
+    }
+
+    nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 110px;
+        right: 0;
+        width: 100%;
+        background-color: white;
+        padding: 20px 0;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    nav ul.show {
+        display: flex;
+    }
+
+    nav ul li {
+        text-align: center;
+        padding: 10px;
+    }
+
+    .contact-info {
+        display: none;
+    }
+
+    .dropdown {
+        display: none;
+    }
+
+    .mobile-only {
+        display: block;
+    }
+
+    nav ul li a::after {
+        display: none;
+    }
+
+    nav ul li a.active::after {
+        display: none;
+    }
+}
+
+@media (min-width: 769px) {
+    .contact-button-wrapper {
+        display: block;
+    }
+
+    .contact-menu-item {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-button-wrapper {
+        display: none;
+    }
+
+    .contact-menu-item {
+        display: block;
+        padding: 0px;
+    }
+
+    .contact-menu-item a {
+        background-color: #FDCB11;
+        color: #FFFFFF;
+        padding: 9px 18px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background-color 0.3s ease, border 0.3s ease;
+        display: inline-block;
+        border: 2px solid #FDCB11;
+    }
+
+    .contact-menu-item a:hover {
+        background-color: rgba(253, 203, 17, 0.4);
+        color: #FFFFFF;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        height: 60px;
+    }
+
+    .logo img {
+        width: 110px;
+    }
+
+    nav ul {
+        top: 60px;
+    }
+}
+
+
+/* ==========================================================================
+   5. ANIMAÇÕES (GLOBAL)
+   ========================================================================== */
+.animated-content {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.animated-content-right {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.animated-content-left {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.show {
+    opacity: 1;
+    transform: translate(0);
+}
+
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.scroll-reveal.reveal {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes fadeInUpStaggered {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 100%, 0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.staggered-fade-up {
+    opacity: 0;
+    animation: fadeInUpStaggered 0.75s ease-out forwards;
+}
+
+.hero-title span {
+    display: inline-block;
+}
+
+.hero-title span:nth-of-type(1) { animation-delay: 0.5s; }
+.hero-title span:nth-of-type(2) { animation-delay: 0.58s; }
+.hero-title span:nth-of-type(3) { animation-delay: 0.66s; }
+.hero-title span:nth-of-type(4) { animation-delay: 0.72s; }
+
+.hero-text { animation-delay: 1.3s; }
+.hero-button { animation-delay: 1.7s; }
+
+
+/* ==========================================================================
+   6. DESTAQUES (.highlight / .highlight-1)
+   --------------------------------------------------------------------------
+   Caixa amarela: só nas páginas que a definiam. Em services o .highlight é
+   apenas texto dourado (sem fundo) — por isso o escopo por página.
+   ========================================================================== */
+.page-home .highlight,
+.page-about .highlight,
+.page-careers .highlight,
+.page-project .highlight,
+.page-commercial .highlight-1,
+.page-residential .highlight-1,
+.page-privacy .highlight-1,
+.page-terms .highlight-1,
+.page-404 .highlight-1 {
+    background-color: #ffcc00;
+    color: #ffffff;
+    padding: 5px 10px;
+}
+
+.page-about .title-section h2 .highlight,
+.page-commercial .title-section h2 .highlight,
+.page-residential .title-section h2 .highlight {
+    color: #FDCB11;
+}
+
+
+/* ==========================================================================
+   7. BANNERS INTERNOS (.projects-banner)
+   ========================================================================== */
+
+/* --- Base comum (todas exceto a galeria de projetos) --- */
+.page-about .projects-banner,
+.page-careers .projects-banner,
+.page-privacy .projects-banner,
+.page-terms .projects-banner,
+.page-commercial .projects-banner,
+.page-residential .projects-banner,
+.page-services .projects-banner,
+.page-project .projects-banner {
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-about .projects-banner h1,
+.page-careers .projects-banner h1,
+.page-privacy .projects-banner h1,
+.page-terms .projects-banner h1,
+.page-commercial .projects-banner h1,
+.page-residential .projects-banner h1,
+.page-services .projects-banner h1,
+.page-project .projects-banner h1 {
+    font-size: 4rem;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+@media (max-width: 1024px) {
+    .page-about .projects-banner,
+    .page-careers .projects-banner,
+    .page-privacy .projects-banner,
+    .page-terms .projects-banner,
+    .page-commercial .projects-banner,
+    .page-residential .projects-banner,
+    .page-services .projects-banner,
+    .page-project .projects-banner {
+        height: 500px;
+    }
+
+    .page-about .projects-banner h1,
+    .page-careers .projects-banner h1,
+    .page-privacy .projects-banner h1,
+    .page-terms .projects-banner h1,
+    .page-commercial .projects-banner h1,
+    .page-residential .projects-banner h1,
+    .page-services .projects-banner h1,
+    .page-project .projects-banner h1 {
+        font-size: 3.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-about .projects-banner,
+    .page-careers .projects-banner,
+    .page-privacy .projects-banner,
+    .page-terms .projects-banner,
+    .page-commercial .projects-banner,
+    .page-residential .projects-banner,
+    .page-services .projects-banner,
+    .page-project .projects-banner {
+        height: 400px;
+    }
+
+    .page-about .projects-banner h1,
+    .page-careers .projects-banner h1,
+    .page-privacy .projects-banner h1,
+    .page-terms .projects-banner h1,
+    .page-commercial .projects-banner h1,
+    .page-residential .projects-banner h1,
+    .page-services .projects-banner h1,
+    .page-project .projects-banner h1 {
+        font-size: 3rem;
+        letter-spacing: 1.5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-about .projects-banner,
+    .page-careers .projects-banner,
+    .page-privacy .projects-banner,
+    .page-terms .projects-banner,
+    .page-commercial .projects-banner,
+    .page-residential .projects-banner,
+    .page-services .projects-banner,
+    .page-project .projects-banner {
+        height: 300px;
+    }
+
+    .page-about .projects-banner h1,
+    .page-careers .projects-banner h1,
+    .page-privacy .projects-banner h1,
+    .page-terms .projects-banner h1,
+    .page-commercial .projects-banner h1,
+    .page-residential .projects-banner h1,
+    .page-services .projects-banner h1,
+    .page-project .projects-banner h1 {
+        font-size: 2rem;
+        letter-spacing: 1px;
+    }
+}
+
+/* --- Imagens de fundo (banners estáticos) --- */
+.page-about .projects-banner,
+.page-careers .projects-banner {
+    background: url('assets/About-us-banner.png') no-repeat center center/cover;
+}
+
+.page-privacy .projects-banner {
+    background: url('assets/privacy-policy-banner.png') no-repeat center center/cover;
+}
+
+.page-terms .projects-banner {
+    background: url('assets/terms-of-use-banner.png') no-repeat center center/cover;
+}
+
+/* Detalhe de projeto: imagem definida inline em cada página */
+.page-project .projects-banner {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.page-project .projects-banner h1 {
+    text-align: center;
+}
+
+/* --- Banners com vídeo (commercial / residential / services) --- */
+.page-commercial .projects-banner,
+.page-residential .projects-banner,
+.page-services .projects-banner {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.page-commercial .projects-banner::before,
+.page-residential .projects-banner::before,
+.page-services .projects-banner::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 0;
+}
+
+.page-commercial .projects-banner h1,
+.page-residential .projects-banner h1,
+.page-services .projects-banner h1 {
+    position: relative;
+    z-index: 1;
+}
+
+#projects-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+/* --- Galeria de projetos (banner próprio, com caixa escura no título) --- */
+.page-projects .projects-banner {
+    background: url('assets/projects-banner.png') no-repeat center center/cover;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+}
+
+.page-projects .projects-banner h1 {
+    font-size: 3.5rem;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+    .page-projects .projects-banner {
+        height: 400px;
+    }
+
+    .page-projects .projects-banner h1 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-projects .projects-banner {
+        height: 300px;
+    }
+
+    .page-projects .projects-banner h1 {
+        font-size: 2rem;
+    }
+}
+
+
+/* ==========================================================================
+   8. PÁGINAS
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   8.1 HOME (index.html)
+   -------------------------------------------------------------------------- */
+.page-home h2 {
+    font-size: 2rem;
+    color: #333;
+    margin: 0 0 20px;
+}
+
+.page-home .hero {
+    position: relative;
+    width: 100%;
+    height: 900px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: white;
+    padding-left: 200px;
+}
+
+#hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 101%;
+    height: 101%;
+    object-fit: cover;
+}
+
+.page-home .hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 0;
+}
+
+.page-home .hero::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.page-home .hero-container {
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+    text-align: left;
+}
+
+.page-home .hero-title {
+    font-size: 4rem;
+    line-height: 1.2;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.page-home .hero-text {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    text-align: justify;
+    margin-bottom: 30px;
+    font-weight: 800;
+}
+
+.page-home .hero-button {
+    display: inline-block;
+    background-color: #ffcc00;
+    color: #fff;
+    padding: 15px 25px;
+    font-size: 32px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+}
+
+.page-home .hero-button:hover {
+    background-color: #e6b800;
+}
+
+@media (max-width: 1024px) {
+    .page-home .hero {
+        padding-left: 100px;
+    }
+
+    .page-home .hero-title {
+        font-size: 3rem;
+    }
+
+    .page-home .hero-text {
+        font-size: 1rem;
+    }
+
+    .page-home .hero-button {
+        padding: 12px 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-home .hero {
+        height: 600px;
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+
+    .page-home .hero-container {
+        max-width: 100%;
+    }
+
+    .page-home .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .page-home .hero-text {
+        font-size: 0.9rem;
+    }
+
+    .page-home .hero-button {
+        font-size: 20px;
+        padding: 10px 20px;
+    }
+
+    .page-home .highlight {
+        padding: 3px 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-home .hero {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .page-home .hero-title {
+        font-size: 2rem;
+    }
+
+    .page-home .hero-text {
+        font-size: 0.8rem;
+    }
+
+    .page-home .hero-button {
+        padding: 8px 15px;
+    }
+
+    .page-home .highlight {
+        padding: 2px 6px;
+    }
+}
+
+/* Cards Commercial / Residential da home */
+.page-home .container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 100px;
+    padding: 50px 50px;
+}
+
+.page-home .container .card,
+.page-home .container .card1 {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 350px;
+    height: 300px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 20px -20px 0 rgba(255, 204, 0, 1), 0 20px 40px rgba(0, 0, 0, 0.15);
+    transition: 0.5s;
+}
+
+.page-home .container .card:hover,
+.page-home .container .card1:hover {
+    height: 260px;
+}
+
+.page-home .container .card .imgBx,
+.page-home .container .card1 .imgBx1 {
+    position: absolute;
+    top: 20px;
+    width: 300px;
+    height: 220px;
+    background: #333;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: 0.5s;
+}
+
+.page-home .container .card:hover .imgBx,
+.page-home .container .card1:hover .imgBx1 {
+    top: -100px;
+    scale: 0.75;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.2);
+}
+
+.page-home .container .card .imgBx img,
+.page-home .container .card1 .imgBx1 img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.page-home .container .card .card-content,
+.page-home .container .card1 .card-content1 {
+    position: absolute;
+    top: 252px;
+    width: 100%;
+    padding: 0 30px;
+    height: 29px;
+    overflow: hidden;
+    text-align: center;
+    transition: 0.5s;
+}
+
+.page-home .container .card:hover .card-content,
+.page-home .container .card1:hover .card-content1 {
+    top: 130px;
+    height: 500px;
+}
+
+.page-home .container .card .card-content h2,
+.page-home .container .card1 .card-content1 h2 {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #000;
+}
+
+.page-home .container .card .card-content p,
+.page-home .container .card1 .card-content1 p {
+    color: #333;
+    text-align: justify;
+}
+
+.page-home .container .card .card-content a,
+.page-home .container .card1 .card-content1 a {
+    position: relative;
+    top: 15px;
+    display: inline-block;
+    padding: 12px 25px;
+    background: #ffcc00;
+    color: #fff;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+@media (max-width: 968px) {
+    .page-home .container {
+        gap: 75px;
+    }
+}
+
+@media (max-width: 468px) {
+    .page-home .container {
+        padding: 50px;
+    }
+
+    .page-home .container .card:hover,
+    .page-home .container .card1:hover {
+        height: 300px;
+    }
+
+    .page-home .container .card .imgBx,
+    .page-home .container .card1 .imgBx1 {
+        width: 220px;
+        height: 220px;
+    }
+
+    .page-home .container .card:hover .card-content {
+        top: 130px;
+        height: 600px;
+    }
+}
+
+/* Faixa promocional */
+.page-home .promo-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0;
+    position: relative;
+    background-color: white;
+}
+
+.page-home .promo-container {
+    position: relative;
+    width: 80%;
+    max-width: 1200px;
+    text-align: center;
+    padding: 0px 50px;
+}
+
+.page-home .promo-title {
+    font-size: 2rem;
+    color: #ffcc00;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.page-home .promo-button {
+    margin-top: 30px;
+    display: inline-block;
+    background-color: #ffcc00;
+    color: #fff;
+    padding: 15px 25px;
+    font-size: 32px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+}
+
+.page-home .promo-button:hover {
+    background-color: #e6b800;
+}
+
+@media (max-width: 768px) {
+    .page-home .promo-section {
+        padding: 20px 0px;
+    }
+
+    .page-home .promo-container {
+        padding: 20px;
+    }
+
+    .page-home .promo-title {
+        font-size: 1.5rem;
+    }
+}
+
+/* Vídeo institucional em largura total */
+.page-home .full-width-video {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+#background-video {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* --------------------------------------------------------------------------
+   8.2 ABOUT (about.html)
+   -------------------------------------------------------------------------- */
+.page-about .title-section {
+    padding: 50px;
+    text-align: start;
+}
+
+.page-about .title-section h2 {
+    line-height: 1.6;
+    text-align: justify;
+    font-size: 2.5rem;
+    color: #333;
+    font-weight: 600;
+    letter-spacing: -1px;
+}
+
+.page-about .title-section strong {
+    color: #FDCB11;
+}
+
+.page-about .title-section p {
+    text-align: justify;
+    font-size: 1.5rem;
+    margin-top: 20px;
+    line-height: 1.6;
+}
+
+@media (max-width: 1024px) {
+    .page-about .title-section {
+        padding: 40px;
+    }
+
+    .page-about .title-section h2 {
+        font-size: 2rem;
+    }
+
+    .page-about .title-section p {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-about .title-section {
+        padding: 30px;
+    }
+
+    .page-about .title-section h2 {
+        font-size: 1.8rem;
+    }
+
+    .page-about .title-section p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-about .title-section {
+        padding: 20px;
+    }
+
+    .page-about .title-section h2 {
+        font-size: 1.6rem;
+    }
+
+    .page-about .title-section p {
+        font-size: 0.9rem;
+    }
+}
+
+.page-about .about-section {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 50px;
+    padding: 50px 20px;
+    background-color: #f9f9f9;
+}
+
+.page-about .about-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 80px;
+    max-width: 1420px;
+}
+
+.page-about .about-item.reverse {
+    flex-direction: row-reverse;
+}
+
+.page-about .about-image img {
+    width: 100%;
+    height: auto;
+    max-width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.page-about .about-content {
+    max-width: 800px;
+    gap: 40px;
+    border-left: solid #FDCB11 15px;
+}
+
+.page-about .about-content h2 {
+    font-size: 2rem;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 40px;
+    padding-left: 20px;
+}
+
+.page-about .about-content p {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
+    padding-left: 20px;
+    text-align: justify;
+}
+
+@media (max-width: 1000px) {
+    .page-about .about-item,
+    .page-about .about-item.reverse {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .page-about .about-image img {
+        max-width: 100%;
+    }
+
+    .page-about .about-content {
+        max-width: 100%;
+        padding-left: 20px;
+    }
+
+    .page-about .about-content h2 {
+        border: none;
+        margin-bottom: 20px;
+        padding-left: 0px;
+    }
+
+    .page-about .about-content p {
+        border: none;
+        padding-left: 0px;
+    }
+}
+
+.page-about .section-title {
+    line-height: 1.6;
+    font-size: 3rem;
+    font-weight: bold;
+    padding: 0px 0px 50px 0px;
+    text-align: center;
+}
+
+.page-about .commitment-section {
+    background-color: #FDCB11;
+    color: #ffffff;
+    padding: 0;
+    align-items: center;
+}
+
+.page-about .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 50px;
+}
+
+.page-about .commitment-item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: center;
+    width: 100%;
+    gap: 0;
+}
+
+.page-about .commitment-text,
+.page-about .commitment-image {
+    flex: 1 1 50%;
+}
+
+.page-about .commitment-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 50px;
+    background-color: #ffffff;
+    text-align: justify;
+}
+
+.page-about .commitment-text h3 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #000;
+    line-height: 1.6;
+    text-align: left;
+}
+
+.page-about .commitment-text p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #000;
+}
+
+.page-about .commitment-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .page-about .container {
+        padding: 20px;
+    }
+
+    .page-about .section-title {
+        padding: 0px 0px 20px 0px;
+    }
+
+    .page-about .commitment-item {
+        flex-direction: column;
+        margin: 0;
+    }
+
+    .page-about .commitment-text {
+        padding: 20px;
+    }
+
+    .page-about .commitment-text h3 {
+        text-align: start;
+    }
+
+    .page-about .commitment-text,
+    .page-about .commitment-image {
+        flex: 1 1 100%;
+    }
+
+    .page-about .reverse {
+        flex-direction: column-reverse;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   8.3 COMMERCIAL (commercial.html)
+   -------------------------------------------------------------------------- */
+.page-commercial .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.page-commercial .title-section,
+.page-residential .title-section {
+    text-align: start;
+    padding: 50px;
+}
+
+.page-commercial .title-section h2,
+.page-residential .title-section h2 {
+    font-size: 2.5rem;
+    color: #333;
+}
+
+.page-commercial .expert-list,
+.page-residential .expert-list {
+    display: flex;
+    gap: 150px;
+    margin-top: 30px;
+}
+
+.page-commercial .expert-list ul,
+.page-residential .expert-list ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.page-commercial .expert-list ul li,
+.page-residential .expert-list ul li {
+    line-height: 1.6;
+    text-align: justify;
+    font-size: 1.2rem;
+    color: #333;
+    font-weight: 100;
+    letter-spacing: -1px;
+    margin-bottom: 20px;
+    position: relative;
+    padding-left: 15px;
+}
+
+.page-commercial .expert-list ul li::before,
+.page-residential .expert-list ul li::before {
+    content: "-";
+    position: absolute;
+    left: 0;
+    color: #FDCB11;
+    font-weight: bold;
+}
+
+.page-commercial .section-title-subtitle,
+.page-residential .section-title-subtitle {
+    line-height: 1.6;
+    text-align: justify;
+    font-size: 2rem;
+    color: #333;
+    font-weight: 600;
+    letter-spacing: -1px;
+    margin-top: 20px;
+}
+
+.page-commercial .section-title-subtitle-1,
+.page-commercial .section-title-subtitle-2,
+.page-residential .section-title-subtitle-1 {
+    line-height: 1.6;
+    text-align: justify;
+    font-size: 1.4rem;
+    color: #333;
+    font-weight: 100;
+    letter-spacing: -1px;
+    margin-top: 20px;
+}
+
+/* Linha de processo (4 blocos) */
+.page-commercial .line-process {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+.page-commercial .line-process .process-item {
+    flex: 1;
+    padding: 40px 50px;
+    text-align: start;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 350px;
+    transition: transform 0.3s ease;
+}
+
+.page-commercial .line-process h3 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.page-commercial .line-process p {
+    text-align: justify;
+}
+
+.page-commercial .line-process .block1 {
+    background-color: #29282B;
+    color: #fff;
+}
+
+.page-commercial .line-process .block2 {
+    background-color: #EDEDED;
+    color: #000;
+}
+
+.page-commercial .line-process .block3 {
+    background-color: #F8F8F8;
+    color: #000;
+}
+
+.page-commercial .line-process .icon {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #FDCB11;
+}
+
+/* Área de atendimento (mapa Leaflet) */
+.page-commercial .service-area {
+    padding: 50px 0;
+    background-color: #1C1C1C;
+}
+
+.page-commercial .service-area-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.page-commercial .service-area-text {
+    flex: 1;
+    color: #fff;
+    padding-right: 100px;
+}
+
+.page-commercial .service-area-text h3 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.page-commercial .service-area-text p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    text-align: justify;
+}
+
+.page-commercial .service-area-map {
+    flex: 1;
+    width: 100%;
+    height: 400px;
+    min-height: 300px;
+}
+
+.page-commercial #map {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+}
+
+/* Faixa "latest projects" */
+.page-commercial .latest-projects {
+    background-color: #FDCB11;
+    padding: 50px 0px 50px 0px;
+    text-align: center;
+}
+
+.page-commercial .latest-projects h3 {
+    font-size: 2.5rem;
+    color: #fff;
+    padding: 0px 20px;
+}
+
+.page-commercial .grid-container {
+    display: grid;
+    margin: 0 auto;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 1024px) {
+    .page-commercial .expert-list,
+    .page-residential .expert-list {
+        gap: 0px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .page-commercial .line-process {
+        flex-direction: column;
+    }
+
+    .page-commercial .service-area-content {
+        flex-direction: column;
+    }
+
+    .page-commercial .service-area-map {
+        flex: none;
+        margin-top: 30px;
+        width: 100%;
+        height: 300px;
+    }
+
+    .page-commercial .service-area-text {
+        padding-right: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-commercial .title-section,
+    .page-residential .title-section {
+        padding: 20px;
+    }
+
+    .page-commercial .title-section h2,
+    .page-residential .title-section h2 {
+        font-size: 2rem;
+    }
+
+    .page-commercial .line-process .process-item {
+        padding: 30px;
+    }
+
+    .page-commercial .service-area-map {
+        height: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-commercial .title-section h2,
+    .page-residential .title-section h2 {
+        font-size: 1.8rem;
+    }
+
+    .page-commercial .line-process .process-item {
+        padding: 20px;
+    }
+
+    .page-commercial .service-area-map {
+        height: 200px;
+    }
+
+    .page-commercial .service-area-text h3 {
+        font-size: 2rem;
+    }
+
+    .page-commercial .service-area-text p {
+        font-size: 1rem;
+    }
+
+    .page-commercial .latest-projects h3 {
+        font-size: 2rem;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   8.4 RESIDENTIAL (residential.html)
+   (banner, título, lista e subtítulos compartilhados com commercial acima)
+   -------------------------------------------------------------------------- */
+.page-residential .full-width-image {
+    width: 99vw;
+    overflow: hidden;
+}
+
+.page-residential .full-width-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* --------------------------------------------------------------------------
+   8.5 SERVICES (services.html — página legada)
+   -------------------------------------------------------------------------- */
+.page-services .container {
+    width: 85%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.page-services .services-intro {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.page-services .services-intro h2 {
+    font-size: 2.5rem;
+    color: #333;
+}
+
+.page-services .services-intro h2 .highlight,
+.page-services .areas-served h3 .highlight {
+    color: #FDCB11;
+}
+
+.page-services .services-intro p {
+    font-size: 1.2rem;
+    margin-top: 20px;
+}
+
+.page-services .specializations {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: center;
+    padding: 50px 20px;
+}
+
+.page-services .image-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.page-services .image-container img {
+    width: 100%;
+    max-width: 450px;
+    height: auto;
+}
+
+.page-services .specializations-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.page-services .specializations-list h3 {
+    font-size: 1.8rem;
+    color: #FDCB11;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.page-services .columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.page-services .columns ul {
+    list-style: none;
+    padding: 0;
+}
+
+.page-services .columns ul li {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.page-services .areas-served {
+    background-color: #fff;
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.page-services .areas-served h3 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.page-services .areas-served p {
+    font-size: 1.2rem;
+}
+
+.page-services .icons {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.page-services .icon {
+    text-align: center;
+    margin-bottom: 20px;
+    flex-basis: 15%;
+}
+
+.page-services .icon img {
+    width: 60px;
+    height: auto;
+}
+
+.page-services .icon p {
+    margin-top: 10px;
+    font-size: 1.2rem;
+}
+
+@media (max-width: 1024px) {
+    .page-services .icons {
+        justify-content: center;
+    }
+
+    .page-services .icon {
+        flex-basis: 45%;
+        margin: 10px 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-services .specializations {
+        grid-template-columns: 1fr;
+    }
+
+    .page-services .columns {
+        grid-template-columns: 1fr;
+    }
+
+    .page-services .specializations-list {
+        align-items: center;
+    }
+
+    .page-services .image-container img {
+        max-width: 300px;
+    }
+
+    .page-services .services-intro h2 {
+        font-size: 2rem;
+    }
+
+    .page-services .icons {
+        flex-direction: column;
+    }
+
+    .page-services .icon {
+        flex-basis: 100%;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-services .services-intro h2 {
+        font-size: 1.8rem;
+    }
+}
+
+/* Cards Residential / Commercial da services */
+.page-services .services-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 150px;
+    padding: 100px 50px;
+}
+
+.page-services .services-card,
+.page-services .services-card1 {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 350px;
+    height: 300px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 35px 80px rgba(0, 0, 0, 0.15);
+    transition: 0.5s;
+    line-height: 1.2;
+}
+
+.page-services .services-card:hover {
+    height: 630px;
+}
+
+.page-services .services-card1:hover {
+    height: 370px;
+}
+
+.page-services .services-imgBx,
+.page-services .services-imgBx1 {
+    position: absolute;
+    top: 20px;
+    width: 300px;
+    height: 220px;
+    background: #333;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: 0.5s;
+}
+
+.page-services .services-card:hover .services-imgBx,
+.page-services .services-card1:hover .services-imgBx1 {
+    top: -100px;
+    scale: 0.75;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.2);
+}
+
+.page-services .services-imgBx img,
+.page-services .services-imgBx1 img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.page-services .services-card-content,
+.page-services .services-card-content1 {
+    position: absolute;
+    top: 252px;
+    width: 100%;
+    padding: 0 30px;
+    height: 29px;
+    overflow: hidden;
+    text-align: center;
+    transition: 0.5s;
+}
+
+.page-services .services-card:hover .services-card-content,
+.page-services .services-card1:hover .services-card-content1 {
+    top: 130px;
+    height: 500px;
+}
+
+.page-services .services-card-content h2,
+.page-services .services-card-content1 h2 {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #000;
+    margin: 0 0 20px;
+}
+
+.page-services .services-card-content p,
+.page-services .services-card-content1 p {
+    color: #333;
+    text-align: justify;
+}
+
+.page-services .services-card-content a,
+.page-services .services-card-content1 a {
+    position: relative;
+    top: 15px;
+    display: inline-block;
+    padding: 12px 25px;
+    background: #ffcc00;
+    color: #fff;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+@media (max-width: 968px) {
+    .page-services .services-container {
+        gap: 100px;
+        padding: 100px 50px;
+    }
+}
+
+@media (max-width: 468px) {
+    .page-services .services-card:hover {
+        height: 700px;
+    }
+
+    .page-services .services-card1:hover {
+        height: 420px;
+    }
+
+    .page-services .services-imgBx,
+    .page-services .services-imgBx1 {
+        width: 220px;
+        height: 220px;
+    }
+
+    .page-services .services-container .services-card:hover .services-card-content {
+        top: 130px;
+        height: 600px;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   8.6 PROJECTS GALLERY (projects.html)
+   -------------------------------------------------------------------------- */
+.page-projects .grid-container {
+    display: grid;
+    gap: 20px;
+    padding: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.page-projects #map {
+    height: 500px;
+    width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   8.7 CAREERS (careers.html)
+   -------------------------------------------------------------------------- */
+.page-careers .container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 100px 20px;
+}
+
+.page-careers .container .card,
+.page-careers .container .card1,
+.page-careers .container .card2,
+.page-careers .container .card3,
+.page-careers .container .card4 {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 350px;
+    height: 300px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 35px 80px rgba(0, 0, 0, 0.15);
+    transition: 0.5s;
+}
+
+.page-careers .container .card:hover  { height: 420px; }
+.page-careers .container .card1:hover { height: 360px; }
+.page-careers .container .card2:hover { height: 490px; }
+.page-careers .container .card3:hover { height: 570px; }
+.page-careers .container .card4:hover { height: 540px; }
+
+.page-careers .container .card .imgBx,
+.page-careers .container .card1 .imgBx1,
+.page-careers .container .card2 .imgBx2,
+.page-careers .container .card3 .imgBx3,
+.page-careers .container .card4 .imgBx4 {
+    position: absolute;
+    top: 20px;
+    width: 300px;
+    height: 220px;
+    background: #333;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: 0.5s;
+}
+
+.page-careers .container .card:hover .imgBx,
+.page-careers .container .card1:hover .imgBx1,
+.page-careers .container .card2:hover .imgBx2,
+.page-careers .container .card3:hover .imgBx3,
+.page-careers .container .card4:hover .imgBx4 {
+    top: -100px;
+    scale: 0.75;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.2);
+}
+
+.page-careers .container .card .imgBx img,
+.page-careers .container .card1 .imgBx1 img,
+.page-careers .container .card2 .imgBx2 img,
+.page-careers .container .card3 .imgBx3 img,
+.page-careers .container .card4 .imgBx4 img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.page-careers .container .card .card-content,
+.page-careers .container .card1 .card-content1,
+.page-careers .container .card2 .card-content2,
+.page-careers .container .card3 .card-content3,
+.page-careers .container .card4 .card-content4 {
+    position: absolute;
+    top: 252px;
+    width: 100%;
+    padding: 0 30px;
+    height: 29px;
+    overflow: hidden;
+    text-align: center;
+    transition: 0.5s;
+}
+
+.page-careers .container .card:hover .card-content,
+.page-careers .container .card1:hover .card-content1,
+.page-careers .container .card2:hover .card-content2,
+.page-careers .container .card3:hover .card-content3,
+.page-careers .container .card4:hover .card-content4 {
+    top: 130px;
+    height: 500px;
+}
+
+.page-careers .container .card .card-content h2,
+.page-careers .container .card1 .card-content1 h2,
+.page-careers .container .card2 .card-content2 h2,
+.page-careers .container .card3 .card-content3 h2,
+.page-careers .container .card4 .card-content4 h2 {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #000;
+}
+
+.page-careers .container .card .card-content p,
+.page-careers .container .card1 .card-content1 p,
+.page-careers .container .card2 .card-content2 p,
+.page-careers .container .card3 .card-content3 p,
+.page-careers .container .card4 .card-content4 p {
+    color: #333;
+    text-align: justify;
+    margin-top: 20px;
+}
+
+@media (max-width: 968px) {
+    .page-careers .container {
+        gap: 100px;
+        padding: 100px 50px;
+    }
+}
+
+@media (max-width: 468px) {
+    .page-careers .container .card:hover  { height: 510px; }
+    .page-careers .container .card1:hover { height: 410px; }
+    .page-careers .container .card2:hover { height: 580px; }
+    .page-careers .container .card3:hover { height: 700px; }
+    .page-careers .container .card4:hover { height: 690px; }
+
+    .page-careers .container .card .imgBx,
+    .page-careers .container .card1 .imgBx1,
+    .page-careers .container .card2 .imgBx2,
+    .page-careers .container .card3 .imgBx3,
+    .page-careers .container .card4 .imgBx4 {
+        width: 220px;
+        height: 220px;
+    }
+
+    .page-careers .container .card:hover .card-content,
+    .page-careers .container .card2:hover .card-content2,
+    .page-careers .container .card3:hover .card-content3,
+    .page-careers .container .card4:hover .card-content4 {
+        top: 130px;
+        height: 600px;
+    }
+}
+
+/* CTA + formulário de candidatura */
+.page-careers .cta-section {
+    text-align: center;
+    color: #000000;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-careers .cta-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.page-careers .cta-section h2 {
+    font-size: 2rem;
+    color: #ffcc00;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    border-top: 2px solid #ffcc00;
+    padding-top: 20px;
+}
+
+.page-careers .cta-section p {
+    font-size: 1rem;
+    margin-bottom: 15px;
+    line-height: 1.6;
+    max-width: 800px;
+}
+
+.page-careers .cta-section a {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.page-careers .cta-container-email {
+    color: #ffcc00;
+}
+
+@media (max-width: 1024px) {
+    .page-careers .cta-container {
+        padding: 40px;
+    }
+
+    .page-careers .cta-section h2 {
+        font-size: 1.8rem;
+    }
+
+    .page-careers .cta-section p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-careers .cta-container {
+        padding: 30px;
+    }
+
+    .page-careers .cta-section h2 {
+        font-size: 1.6rem;
+    }
+
+    .page-careers .cta-section p {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-careers .cta-container {
+        padding: 20px;
+    }
+
+    .page-careers .cta-section h2 {
+        font-size: 1.4rem;
+    }
+
+    .page-careers .cta-section p {
+        font-size: 0.85rem;
+    }
+}
+
+.page-careers .contact-section {
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 1000px;
+}
+
+.page-careers .contact-section form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    width: 100%;
+}
+
+.page-careers .contact-section form input,
+.page-careers .contact-section form textarea {
+    padding: 10px 15px;
+    font-size: 1rem;
+    background-color: none;
+    border: 2px #FDCB11 solid;
+    color: #000000;
+    border-radius: 0px;
+    width: 100%;
+}
+
+.page-careers .contact-section form input:focus,
+.page-careers .contact-section form textarea:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.page-careers .contact-section form button {
+    grid-column: 1 / -1;
+    padding: 10px;
+    background-color: #FDCB11;
+    color: #FFFFFF;
+    border: 2px #FDCB11 solid;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+}
+
+.page-careers textarea {
+    grid-column: 1 / -1;
+    height: 100px;
+    resize: none;
+    width: 100%;
+}
+
+.page-careers ::placeholder {
+    color: #000000;
+    opacity: 1;
+}
+
+.page-careers .success-message,
+.page-careers .error-message,
+.page-careers .loading-message {
+    color: black;
+    display: none;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+@media (max-width: 1028px) {
+    .page-careers .contact-section {
+        width: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-careers .contact-section {
+        padding: 10px;
+    }
+
+    .page-careers .contact-section form {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   8.8 CONTACT (contact.html)
+   -------------------------------------------------------------------------- */
+.page-contact .contact-section-background {
+    width: 100%;
+    height: 650px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.page-contact .contact-section {
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 1000px;
+}
+
+.page-contact .contact-section h1 {
+    color: #ffffff;
+    font-size: 6rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.page-contact .contact-section p {
+    font-size: 1.25rem;
+    color: #111;
+}
+
+.page-contact .contact-section span {
+    font-size: 1.25rem;
+    color: #FDCB11;
+}
+
+.page-contact .contact-section form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    width: 100%;
+}
+
+/* Nota: o CSS original declarava "Advent Pro" nestes campos, mas a fonte
+   nunca era carregada em contact.html — renderizava system-ui. Mantido
+   system-ui para preservar o visual atual. */
+.page-contact .contact-section form input,
+.page-contact .contact-section form textarea {
+    padding: 10px 15px;
+    font-size: 1rem;
+    font-family: system-ui;
+    border: none;
+    background-color: #323232;
+    color: #FFFFFF;
+    border-radius: 0px;
+    width: 100%;
+}
+
+.page-contact .contact-section form input:focus,
+.page-contact .contact-section form textarea:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.page-contact .contact-section form button {
+    grid-column: 1 / -1;
+    padding: 10px;
+    background-color: #FDCB11;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+}
+
+.page-contact textarea {
+    grid-column: 1 / -1;
+    height: 100px;
+    resize: none;
+    width: 100%;
+}
+
+.page-contact ::placeholder {
+    font-family: system-ui;
+    color: #FFFFFF;
+    opacity: 1;
+}
+
+.page-contact .submit-button {
+    font-family: system-ui;
+    border: none;
+    display: inline-block;
+    background-color: #ffcc00;
+    color: #fff;
+    padding: 15px 25px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+}
+
+.page-contact .submit-button:hover {
+    background-color: #e6b800;
+    color: white;
+}
+
+.page-contact .success-message,
+.page-contact .error-message,
+.page-contact .loading-message {
+    color: white;
+    display: none;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.page-contact #map {
+    height: 500px;
+    width: 100%;
+}
+
+@media (max-width: 898px) {
+    .page-contact .contact-section-background {
+        height: 550px;
+    }
+
+    .page-contact .contact-section {
+        padding-top: 0px;
+    }
+
+    .page-contact .contact-section h1 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-contact .contact-section-background {
+        height: auto;
+    }
+
+    .page-contact .contact-section {
+        padding-top: 160px;
+    }
+
+    .page-contact .contact-section form {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-contact .contact-section {
+        padding-top: 100px;
+    }
+}
+
+/* Cards de contato (telefone, e-mail etc.) */
+.page-contact .contact-cards-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 40px;
+}
+
+.page-contact .contact-card {
+    background: #fff;
+    padding: 20px;
+    width: 300px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    border-left: 4px solid #ffcc00;
+    transition: transform 0.3s ease-in-out;
+}
+
+.page-contact .contact-card:hover {
+    transform: translateY(-5px);
+}
+
+.page-contact .contact-card h3 {
+    margin: 0;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.page-contact .contact-card h3 i {
+    font-size: 20px;
+    color: #ffcc00;
+}
+
+.page-contact .contact-card p {
+    margin: 8px 0;
+    font-size: 14px;
+}
+
+.page-contact .contact-card a {
+    text-decoration: none;
+    color: #ffcc00;
+    font-weight: bold;
+}
+
+/* Número de telefone: clicável, mas sem o dourado/negrito do e-mail */
+.page-contact .contact-card a[href^="tel:"] {
+    color: inherit;
+    font-weight: normal;
+}
+
+@media (max-width: 768px) {
+    .page-contact .contact-cards-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .page-contact .contact-card {
+        width: 90%;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   8.9 PRIVACY POLICY (privacyPolicy.html)
+   -------------------------------------------------------------------------- */
+.page-privacy .container,
+.page-terms .container {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    color: #333;
+    text-align: justify;
+}
+
+.page-privacy .container {
+    line-height: 1.7;
+}
+
+.page-privacy .container h2 {
+    font-size: 1.8rem;
+    color: #444;
+    margin-top: 20px;
+    padding-top: 10px;
+}
+
+.page-privacy .container p,
+.page-privacy ul {
+    font-size: 1rem;
+    color: #555;
+}
+
+.page-privacy .container ul {
+    padding-left: 20px;
+}
+
+.page-privacy .container ul li {
+    margin-bottom: 10px;
+    list-style-type: disc;
+}
+
+@media (max-width: 768px) {
+    .page-privacy .container {
+        padding: 15px;
+    }
+
+    .page-privacy .container h2 {
+        font-size: 1.5rem;
+    }
+
+    .page-privacy .container p,
+    .page-privacy ul {
+        font-size: 0.95rem;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   8.10 TERMS OF USE (termsOfUse.html)
+   -------------------------------------------------------------------------- */
+.page-terms .container {
+    line-height: 1.6;
+}
+
+.page-terms h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.page-terms h2 {
+    font-size: 1.8rem;
+    color: #444;
+    margin-top: 20px;
+}
+
+.page-terms .container p {
+    font-size: 1rem;
+    margin-bottom: 15px;
+    color: #555;
+}
+
+.page-terms .freepik {
+    text-decoration: none;
+    font-weight: bold;
+    color: #336AEA;
+}
+
+@media (max-width: 768px) {
+    .page-terms .container {
+        padding: 15px;
+    }
+
+    .page-terms h1 {
+        font-size: 2rem;
+    }
+
+    .page-terms h2 {
+        font-size: 1.5rem;
+    }
+
+    .page-terms p {
+        font-size: 0.95rem;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   8.11 PÁGINA 404 (404.html)
+   -------------------------------------------------------------------------- */
+.page-404 .error-section {
+    position: relative;
+    width: 100%;
+    min-height: calc(100vh - 110px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 150px 20px 80px;
+    background-color: #1C1C1C;
+    overflow: hidden;
+}
+
+.page-404 .error-code {
+    font-size: 11rem;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 4px;
+    color: #FDCB11;
+}
+
+.page-404 .error-section h1 {
+    font-size: 2.5rem;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 24px 0;
+}
+
+.page-404 .error-section p {
+    max-width: 560px;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #cccccc;
+    margin: 0 auto 36px;
+}
+
+.page-404 .home-button {
+    background-color: #FDCB11;
+    color: #FFFFFF;
+    padding: 12px 32px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 2px solid #FDCB11;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    display: inline-block;
+}
+
+.page-404 .home-button:hover {
+    background-color: rgba(253, 203, 17, 0.15);
+    color: #FDCB11;
+}
+
+.page-404 .error-links {
+    margin-top: 44px;
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.page-404 .error-links a {
+    position: relative;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.page-404 .error-links a::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -8px;
+    width: 0;
+    height: 3px;
+    background-color: #FDCB11;
+    transition: width 0.4s ease, left 0.4s ease;
+}
+
+.page-404 .error-links a:hover {
+    color: #FDCB11;
+}
+
+.page-404 .error-links a:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+@media (max-width: 1024px) {
+    .page-404 .error-code {
+        font-size: 9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-404 .error-code {
+        font-size: 7rem;
+    }
+
+    .page-404 .error-section h1 {
+        font-size: 2rem;
+        letter-spacing: 1.5px;
+    }
+
+    .page-404 .error-section p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-404 .error-section {
+        min-height: calc(100vh - 60px);
+        padding: 100px 20px 60px;
+    }
+
+    .page-404 .error-code {
+        font-size: 5rem;
+    }
+
+    .page-404 .error-section h1 {
+        font-size: 1.5rem;
+        letter-spacing: 1px;
+    }
+
+    .page-404 .error-links {
+        gap: 20px;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   8.12 DETALHE DE PROJETO (projects/*.html)
+   Lembrete: nessas páginas o link é <link rel="stylesheet" href="../style.css">
+   -------------------------------------------------------------------------- */
+.page-project h2 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #333;
+    text-align: center;
+}
+
+.page-project p {
+    margin: 0;
+}
+
+.page-project .container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+.page-project .column {
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    padding: 20px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.page-project .item {
+    margin-bottom: 15px;
+}
+
+.page-project .label {
+    font-weight: bold;
+    color: #e0a500;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.page-project .column-map {
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    padding: 0px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.page-project iframe {
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+}
+
+@media (min-width: 768px) {
+    .page-project .container {
+        padding: 50px 50px 30px 50px;
+    }
+
+    .page-project .column {
+        width: calc(33.333% - 20px);
+    }
+}
+
+.page-project .image-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 15px;
+    padding: 20px;
+}
+
+.page-project .image-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: #f3f3f3;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.page-project .image-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+@media (min-width: 768px) {
+    .page-project .image-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .page-project .image-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.page-project .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    align-items: center;
+    justify-content: center;
+}
+
+.page-project .modal-content {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+}
+
+.page-project .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+}
+
+.page-project .prev,
+.page-project .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    user-select: none;
+}
+
+.page-project .prev {
+    left: 20px;
+}
+
+.page-project .next {
+    right: 20px;
+}
+
+
+/* ==========================================================================
+   9. GRADE DE PROJETOS (compartilhada: commercial + projects)
+   ========================================================================== */
+.project {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    height: 320px;
+    transition: transform 0.3s ease-in-out;
+    z-index: 1;
+}
+
+.project:hover {
+    transform: scale(1.12);
+    z-index: 10;
+}
+
+.project img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease-in-out;
+}
+
+.project-overlay {
+    position: absolute;
+    bottom: -100%;
+    left: 10%;
+    width: 80%;
+    background: white;
+    color: black;
+    padding: 15px;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: bottom 0.35s ease;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.project-overlay br+span {
+    color: #ffcc00;
+    display: inline-block;
+    margin-top: 5px;
+}
+
+.project:hover .project-overlay {
+    bottom: 10%;
+}
+
+@media (max-width: 1230px) {
+    .page-commercial .grid-container,
+    .page-projects .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .page-commercial .grid-container a:nth-last-child(1):nth-child(odd),
+    .page-projects .grid-container a:nth-last-child(1):nth-child(odd) {
+        grid-column: span 2;
+        width: 100%;
+    }
+
+    .project:hover {
+        transform: scale(1.06);
+    }
+
+    .project {
+        height: 240px;
+    }
+
+    .project .project-overlay {
+        bottom: 5%;
+    }
+}
+
+@media (max-width: 700px) {
+    .page-commercial .grid-container,
+    .page-projects .grid-container {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .page-commercial .grid-container a:nth-last-child(1):nth-child(odd),
+    .page-projects .grid-container a:nth-last-child(1):nth-child(odd) {
+        grid-column: span 1;
+        width: 100%;
+    }
+
+    .project {
+        height: 200px;
+        transform: scale(1.06);
+    }
+
+    .page-commercial .project-overlay {
+        margin-bottom: 10px;
+    }
+}
+
+
+/* ==========================================================================
+   10. FOOTER, CERTIFICAÇÕES E ESTADOS (GLOBAL — manter por último)
+   ========================================================================== */
+footer {
+    background-color: #1C1C1C;
+    color: #fff;
+    padding: 20px 20px 0px 20px;
+    text-align: center;
+    z-index: 1;
+    position: relative;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.footer-logo img {
+    width: 400px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 50px;
+}
+
+.footer-links div {
+    text-align: left;
+}
+
+.footer-links h4 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links ul li {
+    margin-bottom: 10px;
+}
+
+.footer-links ul li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links ul li a:hover {
+    color: #FFD700;
+}
+
+.footer-bottom {
+    font-size: 0.9rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 20px auto 0;
+    padding: 20px 20px 10px 20px;
+}
+
+.footer-bottom p {
+    margin: 5px 0;
+    text-align: center;
+}
+
+@media (max-width: 850px) {
+    .footer-logo img {
+        width: 300px;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-bottom {
+        padding: 0px 20px 10px 20px;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .footer-bottom p {
+        text-align: start;
+    }
+}
+
+/* Certificações (footer da home) */
+.footer-certifications {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    text-align: center;
+}
+
+.footer-certifications h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #FDCB11;
+    margin-bottom: 20px;
+}
+
+.certifications-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.certifications-list img {
+    max-width: 280px;
+    height: auto;
+    background-color: #fff;
+    padding: 8px;
+    border-radius: 4px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.certifications-list img:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(253, 203, 17, 0.25);
+}
+
+@media (max-width: 850px) {
+    .certifications-list img {
+        max-width: 220px;
+    }
+}
+
+/* Contador de projetos acima do mapa (projects + contact) */
+.page-projects .map-stat,
+.page-contact .map-stat {
+    text-align: center;
+    padding: 30px 20px 10px;
+    background-color: #1C1C1C;
+}
+
+.page-projects .map-stat-number,
+.page-contact .map-stat-number {
+    display: block;
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #FDCB11;
+}
+
+.page-projects .map-stat-label,
+.page-contact .map-stat-label {
+    display: block;
+    margin-top: 8px;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #ffffff;
+}
+
+@media (max-width: 480px) {
+    .page-projects .map-stat-number,
+    .page-contact .map-stat-number {
+        font-size: 2.8rem;
+    }
+
+    .page-projects .map-stat-label,
+    .page-contact .map-stat-label {
+        font-size: 1rem;
+    }
+}
+
+/* Cores dos clusters do mapa — paleta ACES (amarelo → laranja, sem verde) */
+.page-projects .marker-cluster-small,
+.page-contact .marker-cluster-small {
+    background-color: rgba(253, 203, 17, 0.45);
+}
+.page-projects .marker-cluster-small div,
+.page-contact .marker-cluster-small div {
+    background-color: rgba(253, 203, 17, 0.9);
+}
+
+.page-projects .marker-cluster-medium,
+.page-contact .marker-cluster-medium {
+    background-color: rgba(255, 179, 0, 0.45);
+}
+.page-projects .marker-cluster-medium div,
+.page-contact .marker-cluster-medium div {
+    background-color: rgba(255, 179, 0, 0.9);
+}
+
+.page-projects .marker-cluster-large,
+.page-contact .marker-cluster-large {
+    background-color: rgba(244, 130, 30, 0.45);
+}
+.page-projects .marker-cluster-large div,
+.page-contact .marker-cluster-large div {
+    background-color: rgba(244, 130, 30, 0.95);
+}
+
+/* Número dentro do cluster: escuro e em negrito para contraste */
+.page-projects .marker-cluster span,
+.page-contact .marker-cluster span {
+    color: #1C1C1C;
+    font-weight: 700;
+}
+
+/* Estado ativo (nav e footer) */
+.active {
+    color: #ffcc00;
+}

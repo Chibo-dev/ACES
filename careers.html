@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAREERS</title>
+    <link rel="icon" type="image/png" href="assets/Aces-favicon.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="page-careers">
+    <header id="main-header">
+        <div class="logo">
+            <img id="logo-img" src="assets/Aces-black-logo.png" alt="ACES Logo">
+        </div>
+        <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+        <nav>
+            <ul id="nav-menu">
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="about.html">ABOUT US</a></li>
+                <li><a href="commercial.html">COMMERCIAL</a></li>
+                <li><a href="residential.html">RESIDENTIAL</a></li>
+                <li><a href="projects.html">PROJECTS GALLERY</a></li>
+                <li><a href="careers.html" class="active">CAREERS</a></li>
+                <li class="contact-menu-item"><a href="contact.html">CONTACT US</a></li>
+            </ul>
+        </nav>
+        <div class="contact-button-wrapper">
+            <a href="contact.html" class="contact-button">CONTACT US</a>
+        </div>
+    </header>
+
+    <section class="projects-banner">
+        <h1 class="animated-content"><span class="highlight">Join the ACES Team</span></h1>
+    </section>
+
+    <section class="container" id="services">
+        <div class="card animated-content">
+            <div class="imgBx">
+                <img src="assets/ADMINISTRATIVE.png" alt="">
+            </div>
+            <div class="card-content">
+                <h2>ADMINISTRATIVE</h2>
+                <p>Our office provides diverse opportunities
+                    across Administrative, Accounting,
+                    Estimating, and Project Management
+                    departments. Responsible for overseeing
+                    contracts, compliance, scheduling, and
+                    communication, ensuring operational
+                    efficiency and project success while
+                    contributing to the company's overall
+                    growth and sustainability. </p>
+            </div>
+        </div>
+        <div class="card1 animated-content">
+            <div class="imgBx1">
+                <img src="assets/APPRENTICE.png" alt="">
+            </div>
+            <div class="card-content1">
+                <h2>APPRENTICE ELECTRICIAN</h2>
+                <p>The Apprentice electrician's
+                    responsibilities are to assist
+                    licensed electricians in
+                    installing, operating,
+                    maintaining, and repairing
+                    electrical systems to ensure
+                    safe and efficient
+                    performance.</p>
+            </div>
+        </div>
+        <div class="card2 animated-content">
+            <div class="imgBx2">
+                <img src="assets/JOURNEYMAN.png" alt="">
+            </div>
+            <div class="card-content2">
+                <h2>JOURNEYMAN ELECTRICIAN</h2>
+                <p>A Journeyman Electrician is a certified professional specializing in electrical
+                    systems, ensuring safety, efficiency, and compliance with industry regulations.
+                    They interpret blueprints, determine the best installation methods, and coordinate
+                    with supervisors, foremen, project managers, and contractors to ensure efficient
+                    workflow. Strong communication skills are essential for collaborating with teams.</p>
+            </div>
+        </div>
+        <div class="card3 animated-content">
+            <div class="imgBx3">
+                <img src="assets/FORMAN.png" alt="">
+            </div>
+            <div class="card-content3">
+                <h2>FOREMAN</h2>
+                <p>A Foreman is a skilled and
+                    experienced leader responsible
+                    for supervising and
+                    coordinating electrical projects
+                    on-site. They oversee
+                    journeyman electricians and
+                    apprentices, ensuring work is
+                    completed safely, efficiently,
+                    and in compliance with project
+                    specifications and regulations.
+                    Foremen interpret blueprints,
+                    assign tasks, manage schedules,
+                    and communicate with project
+                    managers, contractors, and
+                    clients to maintain workflow
+                    and project quality. Strong
+                    leadership, problem-solving,
+                    and communication skills are
+                    essential for success in this role.</p>
+            </div>
+        </div>
+        <div class="card4 animated-content">
+            <div class="imgBx4">
+                <img src="assets/SUPERVISOR.png" alt="">
+            </div>
+            <div class="card-content4">
+                <h2>SUPERVISOR</h2>
+                <p>A Supervisor in the electrical field
+                    oversees and manages multiple
+                    projects, ensuring work is completed
+                    safely, efficiently, and in compliance
+                    with industry regulations. They
+                    coordinate between foremen, project
+                    managers, and contractors, monitor
+                    job progress, enforce safety standards,
+                    and provide technical guidance.
+                    Supervisors also handle scheduling,
+                    resource allocation, and problem-solving to maintain workflow and
+                    project quality. Strong leadership,
+                    communication, and organizational
+                    skills are essential for this role.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="cta-container">
+            <h2 class="animated-content">Ready to join the ACES team?</h2>
+            <p class="animated-content">
+                Email your resume to
+                <a class="cta-container-email" href="mailto:hiring@aceselectric.us">hiring@aceselectric.us</a>
+            </p>
+        </div>
+        <section class="contact-section animated-content">
+            <form id="careerForm" method="POST" enctype="multipart/form-data" data-form class="contact-form">
+                <input type="text" id="name" name="name" placeholder="Name *" required>
+                <input type="email" id="Email" name="Email" placeholder="Email Address *" required>
+                <input type="tel" id="Phone" name="Phone" placeholder="Phone Number *" required>
+                <input type="text" id="job-position" name="job-position" placeholder="Job Position *" required>
+                <input type="text" id="messenger" name="messenger" placeholder="Messenger *" required>
+                <input type="url" id="resume-link" name="resume-link"
+                    placeholder="Link to Resume (Google Drive, Dropbox, etc.) *" required>
+                <button class="submit-button" type="submit" data-button>Submit</button>
+                <input type="hidden" name="_template" value="table">
+
+            </form>
+            <div class="loading-message" style="display: none;">Sending your message, please wait.</div>
+            <div class="success-message" style="display: none;">Your message has been successfully sent!</div>
+            <div class="error-message" style="display: none;">There was a problem sending the message. Please try again
+                later.</div>
+        </section>
+    </section>
+
+    <script>
+        document.getElementById("careerForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            var formData = new FormData(this);
+            var loadingMessage = document.querySelector(".loading-message");
+            var successMessage = document.querySelector(".success-message");
+            var errorMessage = document.querySelector(".error-message");
+
+            successMessage.style.display = "none";
+            errorMessage.style.display = "none";
+
+            loadingMessage.style.display = "block";
+
+            fetch("https://formsubmit.co/ajax/hiring@aceselectric.us", {
+                method: "POST",
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        successMessage.style.display = "block";
+                        document.getElementById("careerForm").reset();
+                    } else {
+                        errorMessage.style.display = "block";
+                    }
+                })
+                .catch(error => {
+                    errorMessage.style.display = "block";
+                    console.error("Error:", error);
+                })
+                .finally(() => {
+                    loadingMessage.style.display = "none";
+                });
+        });
+    </script>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="assets/Aces-white-logo.png" alt="ACES Logo">
+            </div>
+            <div class="footer-links">
+                <div class="services">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html" class="active">About Us</a></li>
+                        <li><a href="commercial.html">Commercial</a></li>
+                        <li><a href="residential.html">Residential</a></li>
+                        <li><a href="projects.html">Projects Gallery</a></li>
+                    </ul>
+                </div>
+                <div class="contact">
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="privacyPolicy.html">Privacy Policy</a></li>
+                        <li><a href="termsOfUse.html">Terms Of Use</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-certifications">
+            <h4>Certifications</h4>
+            <div class="certifications-list">
+                <img src="assets/swam-certification.png" alt="SWaM Certified - Small, Women and Minority-Owned Business by the Virginia Department of Small Business & Supplier Diversity">
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>License Number - VA - 2705157084 / MD - 12758 / DC - EM40000126</p>
+            <p>COPYRIGHT © 2025 • ACES ELECTRICAL SERVICES LLC</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="animation.js"></script>
+
+</body>
+
+</html>

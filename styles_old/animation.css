@@ -1,0 +1,56 @@
+.animated-content {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.animated-content-right {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.animated-content-left {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.show {
+    opacity: 1;
+    transform: translate(0);
+}
+
+
+
+@keyframes fadeInUpStaggered {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 100%, 0);
+    }
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+/* Aplicando a animação com delays escalonados */
+.staggered-fade-up {
+    opacity: 0;
+    animation: fadeInUpStaggered 0.75s ease-out forwards;
+}
+
+/* Correção: Garantindo que os spans possam animar corretamente */
+.hero-title span {
+    display: inline-block;  /* Importante para aplicar transform */
+}
+
+/* Aplicando delays diferentes a cada linha */
+.hero-title span:nth-of-type(1) { animation-delay: 0.5s; }  /* POWERING */
+.hero-title span:nth-of-type(2) { animation-delay: 0.58s; }  /* YOUR */
+.hero-title span:nth-of-type(3) { animation-delay: 0.66s; }  /* SUCCESS */
+.hero-title span:nth-of-type(4) { animation-delay: 0.72s; }  /* PROJECT */
+
+/* Atraso para os elementos subsequentes */
+.hero-text { animation-delay: 1.3s; }
+.hero-button { animation-delay: 1.7s; }
